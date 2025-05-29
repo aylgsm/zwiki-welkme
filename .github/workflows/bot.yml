@@ -2,19 +2,25 @@ name: Wikipedia Welcome Bot
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # hər dəqiqə işə düşür
-  workflow_dispatch:
+    - cron: '*/10 * * * *'  # hər 10 dəqiqədə bir işə düşəcək
+  workflow_dispatch:        # manual run üçün də imkan qalacaq
 
 jobs:
-  run-bot:
+  welcome:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Kodları checkout et
+        uses: actions/checkout@v4
+
       - name: Python quraşdır
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Lazım olan paketləri quraşdır
-        run: pip install requests
-      - name: Boti işə sal
-        run: python welcome_bot.py
+          python-version: '3.x'
+
+      - name: Asılılıqları quraşdır
+        run: |
+          pip install -r requirements.txt
+
+      - name: Botu işə sal
+        run: |
+          python bot.py

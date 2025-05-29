@@ -51,7 +51,7 @@ def welcome_user(user, cookies):
 
     # Redaktə et
     page_title = f"İstifadəçi_müzakirəsi:{user}"
-    text = "{{Xoşgəldiniz}}"
+    text = "{{Xoşgəldiniz}} ~~~~"
     summary = "Vikipediyaya xoş gəldiniz!"
 
     requests.post(API_URL, data={

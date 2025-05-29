@@ -1,26 +1,29 @@
-name: Wikipedia Welcome Bot
+name: Welcome New Users
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # hər 10 dəqiqədə bir işə düşəcək
-  workflow_dispatch:        # manual run üçün də imkan qalacaq
+    - cron: '*/10 * * * *'  # Hər 10 dəqiqə
+  workflow_dispatch:
 
 jobs:
-  welcome:
+  run:
     runs-on: ubuntu-latest
     steps:
-      - name: Kodları checkout et
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Python quraşdır
-        uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Asılılıqları quraşdır
-        run: |
-          pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - name: Botu işə sal
+      - name: Update user-config
         run: |
-          python bot.py
+          echo "usernames['wikipedia']['az'] = '${{ secrets.WIKI_USERNAME }}'" >> user-config.py
+
+      - name: Run bot
+        env:
+          PYWIKIBOT_PASSWORD: ${{ secrets.WIKI_PASSWORD }}
+        run: python welcome_bot.py

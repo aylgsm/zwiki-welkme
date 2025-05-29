@@ -2,8 +2,8 @@ import requests
 from datetime import datetime, timedelta
 
 API_URL = "https://az.wikipedia.org/w/api.php"
-USERNAME = "sənin_bot_adın"
-PASSWORD = "sənin_bot_parolu"
+USERNAME = "TarantulaBot"
+PASSWORD = "@tlsp2007@"
 
 def login():
     # Token alma

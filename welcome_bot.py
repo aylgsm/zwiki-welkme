@@ -17,7 +17,7 @@ for change in recent_changes:
 
     if not talk_page.exists():
         print(f"{username} üçün müzakirə səhifəsi yaradılır...")
-        welcome_text = "{{Xoşgəldiniz}} --~~~~"
+        welcome_text = "{{Xoşgəldiniz}} ~~~~"
         summary = "Vikipediyaya xoş gəldiniz!"
         talk_page.text = welcome_text
         talk_page.save(summary=summary)
